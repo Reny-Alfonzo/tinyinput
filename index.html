@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Entradas de Texto</title>
+    <meta name="description" content="Una aplicación web para crear y gestionar entradas de texto de forma sencilla y organizada.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>Editor de Entradas de Texto</h1>
+        <div class="header-controls">
+            <nav class="navigation">
+                <button id="btnEditor" class="nav-btn active">
+                    <span class="nav-icon">✏️</span>
+                    Nuevo
+                </button>
+                <button id="btnEntries" class="nav-btn">
+                    <span class="nav-icon">📝</span>
+                    Entradas <span id="entriesCount" class="count-badge">0</span>
+                </button>
+            </nav>
+            <div class="theme-selector">
+                <button id="btnTheme" class="btn-theme" title="Cambiar tema">
+                    <span>🔄 Automático</span>
+                </button>
+                <div id="themeMenu" class="theme-menu">
+                    <button class="theme-option" data-theme="light">
+                        <span class="theme-icon">☀️</span>
+                        <span>Claro</span>
+                    </button>
+                    <button class="theme-option" data-theme="dark">
+                        <span class="theme-icon">🌙</span>
+                        <span>Oscuro</span>
+                    </button>
+                    <button class="theme-option" data-theme="auto">
+                        <span class="theme-icon">🔄</span>
+                        <span>Automático</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Pantalla del Editor -->
+        <section id="editorScreen" class="screen active">
+            <div class="screen-header">
+                <h2>Crear Nueva Entrada</h2>
+                <p class="screen-subtitle">Comparte tus ideas y pensamientos</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="entryForm" novalidate>
+                    <div class="form-group">
+                        <label for="title">Título:</label>
+                        <input type="text" id="title" name="title" maxlength="100" required 
+                               placeholder="Escribe un título descriptivo...">
+                        <div class="char-counter">
+                            <span id="titleCounter">0</span>/100 caracteres
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" maxlength="1000" required
+                                  placeholder="Escribe tu mensaje aquí..."></textarea>
+                        <div class="char-counter">
+                            <span id="messageCounter">0</span>/1000 caracteres
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" disabled>
+                            <span class="btn-icon">💾</span>
+                            Crear Entrada
+                        </button>
+                        <button type="button" id="btnClear" class="btn-secondary">
+                            <span class="btn-icon">🗑️</span>
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Pantalla de Entradas -->
+        <section id="entriesScreen" class="screen">
+            <div class="screen-header">
+                <h2>Mis Entradas</h2>
+                <p class="screen-subtitle">Todas tus entradas organizadas cronológicamente</p>
+                <div class="entries-stats">
+                    <span id="totalEntries">0 entradas</span>
+                    <button id="btnSearch" class="btn-icon-only" title="Buscar">
+                        <span class="btn-icon">🔍</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="searchContainer" class="search-container hidden">
+                <input type="text" id="searchInput" placeholder="Buscar en títulos y mensajes...">
+                <button id="btnCloseSearch" class="btn-icon-only">
+                    <span class="btn-icon">✖️</span>
+                </button>
+            </div>
+            
+            <div id="entries" class="entries-container">
+                <div class="no-entries">
+                    <div class="empty-state">
+                        <span class="empty-icon">📝</span>
+                        <h3>No hay entradas todavía</h3>
+                        <p>¡Crea tu primera entrada para comenzar!</p>
+                        <button id="btnCreateFirst" class="btn-primary">
+                            <span class="btn-icon">✏️</span>
+                            Crear Primera Entrada
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
